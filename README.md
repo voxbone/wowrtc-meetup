@@ -1,4 +1,4 @@
-Voxbone WebRTC Node.js SDK
+Click2Call Demo for WOWRTC Meetup SF 2014
 =========================
 
 #####1. Install the dependencies
@@ -18,6 +18,6 @@ Voxbone WebRTC Node.js SDK
 
 ```
     npm start
-```    
+```
 
 #####4. Access it via [http://localhost:3000](http://localhost:3000)

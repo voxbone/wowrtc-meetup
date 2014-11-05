@@ -15,8 +15,8 @@ head
                   'started':    function(e){ document.getElementById("status_message").innerHTML="<b><font color='green'>In Call</font></b>"; },
                   'ended':      function(e){ document.getElementById("status_message").innerHTML="<b><font color='red'>Call Ended</font></b>"; }
               };
-              function sendTone(b){
-                document.getElementById("status_message").innerHTML="DTMF Sent: " + b.innerHTML;
+              function sendTone(e){
+                document.getElementById("status_message").innerHTML="DTMF Sent: " + e.innerHTML;
               };
               /** This part is required as it handle Voxbone WebRTC initialization **/
               function init(){

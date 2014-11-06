@@ -8,22 +8,16 @@ head
         script(src='https://webrtc.voxbone.com/js/jssip-0.3.0.js', type='text/javascript')
         script(src='http://code.jquery.com/jquery-latest.min.js', type='text/javascript')
         script(type='text/javascript').
-              var tones = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "#", "*"];
               var eventHandlers = {
                   'progress':   function(e){ document.getElementById("status_message").innerHTML="Calling " + document.getElementById('number').value;},
                   'failed':     function(e){ document.getElementById("status_message").innerHTML="<b><font color='red'>Failed to connect: " + e.data.cause + "</font></b>"},
                   'started':    function(e){ document.getElementById("status_message").innerHTML="<b><font color='green'>In Call</font></b>"; },
                   'ended':      function(e){ document.getElementById("status_message").innerHTML="<b><font color='red'>Call Ended</font></b>"; }
               };
-              function sendTone(e){
-                document.getElementById("status_message").innerHTML="DTMF Sent: " + e.innerHTML;
-              };
               /** This part is required as it handle Voxbone WebRTC initialization **/
               function init(){
                   // Set the webrtc auth server url (url below it the default one)
                   voxbone.WebRTC.authServerURL = "https://webrtc.voxbone.com/rest/authentication/createToken";
-                  // Force the preferedPop to TEST.
-                  //This can be usefull if you need  to get your webrtc calls troubleshooted
                   //If this is not set, a ping to each pop will be issued to determine which is the most optimal for the user
                   //Default is to use the ping mechanism to determine the preferedPop.
                   //voxbone.WebRTC.preferedPop = 'BE';
@@ -32,7 +26,7 @@ head
                   //Set the caller-id, domain name gets automatically stripped off
                   //Note that It must be a valid sip uri.
                   //Default value is: voxrtc@voxbone.com
-                  voxbone.WebRTC.configuration.uri = "Yo_Browser@voxbone.com";
+                  voxbone.WebRTC.configuration.uri = "hello@voxbone.com";
                   //Bootstrap Voxbone WebRTC javascript object
                   voxbone.WebRTC.init(#{voxrtc_config});
               }
@@ -47,6 +41,12 @@ head
                       button.innerHTML = "Unmute";
                   }
               }
+              /** DTMF **/
+              var tones = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "#", "*"];
+              function sendTone(e){
+                document.getElementById("status_message").innerHTML="DTMF Sent: " + e.innerHTML;
+              };
+
     block content
 
       //
@@ -88,5 +88,5 @@ head
             div
               button.btn.btn-default(type='button', onclick='voxbone.WebRTC.sendDTMF(tones[0]; sendTone(this);)') 0
               button.btn.btn-default(type='button', onclick='voxbone.WebRTC.sendDTMF(tones[9]); sendTone(this);') 9
-              button.btn.btn-default(type='button', onclick='voxbone.WebRTC.sendDTMF(tones[11]); sendTone(this);') *
               button.btn.btn-default(type='button', onclick='voxbone.WebRTC.sendDTMF(tones[10]); sendTone(this);') #
+              button.btn.btn-default(type='button', onclick='voxbone.WebRTC.sendDTMF(tones[11]); sendTone(this);') *

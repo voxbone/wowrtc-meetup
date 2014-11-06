@@ -1,8 +1,8 @@
 var configuration = {
     voxbone: {
         webrtc: {
-            default_username: 'username',
-            default_secret: 'secret'
+            default_username: 'voxbonedev',
+            default_secret: 'mail-RTC14'
         }
     }
 };
